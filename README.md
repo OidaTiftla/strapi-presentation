@@ -1,11 +1,32 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# Strapi Introduction – Slidev Presentation
 
-To start the slide show:
+This repository contains a [Slidev](https://github.com/slidevjs/slidev) presentation introducing [Strapi](https://strapi.io/), an open-source headless CMS.
 
-- `pnpm install`
-- `pnpm dev`
-- visit <http://localhost:3030>
+## Getting Started
 
-Edit the [slides.md](./slides.md) to see the changes.
+To view and edit the slides locally:
 
-Learn more about Slidev at the [documentation](https://sli.dev/).
+1. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+2. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+3. Open [http://localhost:3030](http://localhost:3030) in your browser.
+
+## Editing Slides
+
+- The main content is in [slides.md](./slides.md).
+- Edit this file to update or extend the presentation.
+
+## About the Presentation
+
+- Covers Strapi basics, admin panel, API usage, customization, and extensibility.
+- Includes code samples for REST and GraphQL queries, and backend customization (controllers, services, routes, policies, schema).
+
+## Learn More
+
+- [Strapi Documentation](https://docs.strapi.io/)
+- [Slidev Documentation](https://sli.dev/)
