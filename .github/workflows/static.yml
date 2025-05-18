@@ -43,8 +43,12 @@ jobs:
           version: 9
       - name: Install dependencies
         run: pnpm install
-      - name: Build static site
-        run: pnpm run build
+      - name: Install slidev
+        run:  pnpm i -g @slidev/cli
+      - name: Install for PDF
+        run: npm i -D playwright-chromium
+      - name: Build
+        run: slidev build --base /strapi-presentation/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
