@@ -1,639 +1,707 @@
 ---
-# You can also start simply with 'default'
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
+theme: dracula
+transition: fade
+title: Strapi introduction – A Headless CMS
+author: Christoph Stephan
 class: text-center
-# https://sli.dev/features/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
-mdc: true
-# open graph
-# seoMeta:
-#  ogImage: https://cover.sli.dev
+hideInToc: true
+# monacoTypesSource: ata
+monacoTypesAdditionalPackages:
+  - qs
+monacoRunAdditionalDeps:
+  - qs
 ---
 
-# Welcome to Slidev
+# Strapi introduction
 
-Presentation slides for developers
+Version 5
 
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
-
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+A Headless CMS
 
 ---
-transition: fade-out
+hideInToc: true
 ---
 
-# What is Slidev?
+# Agenda
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
 <Toc minDepth="1" maxDepth="1" />
+
+<!--
+1. Introduce Strapi - a headless CMS.
+2. Admin panel
+3. Extending / customizing with code
+-->
+
+---
+
+# What is Strapi?
+
+An open-source, Node.js-based headless CMS.
+
+- Auto-generated
+  - DB-Migrations
+  - RESTful and GraphQL APIs
+  - Code
+  - Types for frontend (workaround) <!-- ToDo: provide link -->
+- Supported Databases:
+  - SQLite
+  - PostgreSQL
+  - MySQL
+- Admin panel
+
+---
+
+## Create Strapi Project
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+```bash
+npx create-strapi-app@latest
 ```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
 
 ---
 layout: image-right
-image: https://cover.sli.dev
+image: /strapi-admin-panel.png
 ---
 
-# Code
+# Admin Panel
 
-Use code snippets and get the highlighting directly, and even types hover!
+- Collection types
+- Single types
+- Components
 
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
+<br>
+<br>
 
-import { computed, ref } from 'vue'
+- Localizable content
 
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
+---
+layout: two-cols
+---
 
-doubled.value = 2
+# Field Types
+
+- Simple fields
+- JSON
+- Markdown / Blocks
+- Media
+- Relations
+- Components
+- Dynamic zones (multiple components)
+
+::right::
+
+<div class="h-95% w-full">
+  <img class="h-full w-auto object-contain" src="/strapi-field-types.png" />
+</div>
+
+---
+
+## Text Field - advanced options
+
+<img class="h-9/10" src="/strapi-text.png" />
+
+---
+
+## Relation Field
+
+<img class="h-9/10" src="/strapi-relation.png" />
+
+---
+
+# RestAPI
+
+<br>
+<br>
+
+- `qs` in the frontend: A querystring parsing and stringifying library with some added security.
+
+<br>
+<br>
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log(qs.stringify({
+  foo: {
+    bar: 'baz'
+  }
+}, { encode: false }));
 ```
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
 ---
 
-# Shiki Magic Move
+## Filters - Simple
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+console.log('/api/restaurants?' + qs.stringify({
+  filters: {
+    username: {
+      $eq: 'John',
+    },
+  },
+}, { encode: false }));
+```
+
+---
+
+## Filters - And, Or
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/restaurants?' + qs.stringify({
+  filters: {
+    $or: [
+      { date: { $eq: '2020-01-01' } },
+      { date: { $eq: '2020-01-02' } },
+    ],
+    author: { name: { $eq: 'Kai doe' } },
+  },
+}, { encode: false }));
+```
+
+---
+
+## Filters - Deep
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/restaurants?' + qs.stringify({
+  filters: {
+    chef: {
+      restaurants: {
+        stars: {
+          $eq: 5,
+        },
+      },
+    },
+  },
+}, { encode: false }));
+```
+
+---
+
+## Select - Simple
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  fields: ['name', 'description'],
+}, { encode: false }));
+```
+
+---
+
+## Populate - Simple
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  populate: [ 'headerImage', 'author' ],
+}, { encode: false }));
+```
+
+---
+
+## Populate - All
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  populate: '*',
+}, { encode: false }));
+```
+
+---
+
+## Populate & Select
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  fields: ['title', 'slug'],
+  populate: {
+    headerImage: {
+      fields: ['name', 'url'],
+    },
+  },
+}, { encode: false }));
+```
+
+---
+
+## Populate & Filter & Sort
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  populate: {
+    categories: {
+      sort: ['name:asc'],
+      filters: {
+        name: {
+          $eq: 'Cars',
+        },
+      },
+    },
+  },
+}, { encode: false }));
+```
+
+---
+
+## Locale
+
+```js {monaco-run} { lineNumbers: true }
+import qs from 'qs';
+
+console.log('/api/articles?' + qs.stringify({
+  locale: 'fr',
+}, { encode: false }));
+```
+
+---
+layout: image-right
+image: /strapi-graphql.png
+---
+
+# GraphQL
+
+<br>
+<br>
+<br>
+<br>
+
+```bash
+npm install @strapi/plugin-graphql
+```
+
+<br>
+<br>
+
+```
+http://localhost:1337/graphql
+```
+
+---
+
+# Extensibility through plugins and **custom code**
+
+- Controller
+- Service
+- Routing
+- Middleware
+- Document Service
+- Query Engine
+
+---
+
+## Architecture
+
+![diagram-controllers-services.png](/diagram-controllers-services.png)
+
+---
+
+## Controller
+
+`src/api/article/controllers/article.ts`
 
 ````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+```ts {*|7}
+/**
+ *  article controller
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreController('api::article.article');
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
+<!-- https://docs.strapi.io/cms/backend-customization/controllers -->
+
+```ts {7-16}
+/**
+ *  article controller
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreController('api::article.article', ({ strapi }) => ({
+  // Method 1: Creating an entirely custom action
+  async exampleAction(ctx) {
+    try {
+      ctx.body = 'ok';
+    } catch (err) {
+      ctx.body = err;
     }
-  }
-}
+  },
+}));
 ```
 
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
+```ts {7-21}
+/**
+ *  article controller
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreController('api::article.article', ({ strapi }) => ({
+  // Method 2: Wrapping a core action (leaves core logic in place)
+  async find(ctx) {
+    // some custom logic here
+    ctx.query = { ...ctx.query, local: 'en' }
+
+    // Calling the default core action
+    const { data, meta } = await super.find(ctx);
+
+    // some more custom logic
+    meta.date = Date.now()
+
+    return { data, meta };
+  },
+}));
 ```
 
-Non-code blocks are ignored.
+```ts {7-24}
+/**
+ *  article controller
+ */
 
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreController('api::article.article', ({ strapi }) => ({
+  // Method 3: Replacing a core action with proper sanitization
+  async find(ctx) {
+    // validateQuery (optional)
+    // to throw an error on query params that are invalid or the user does not have access to
+    await this.validateQuery(ctx);
+
+    // sanitizeQuery to remove any query params that are invalid or the user does not have access to
+    // It is strongly recommended to use sanitizeQuery even if validateQuery is used
+    const sanitizedQueryParams = await this.sanitizeQuery(ctx);
+    const { results, pagination } = await strapi.service('api::restaurant.restaurant').find(sanitizedQueryParams);
+
+    // sanitizeOutput to ensure the user does not receive any data they do not have access to
+    const sanitizedResults = await this.sanitizeOutput(results, ctx);
+
+    return this.transformResponse(sanitizedResults, { pagination });
+  },
+}));
 ```
 ````
 
 ---
 
-# Components
+## Sanitization when utilizing controller factories
 
-<div grid="~ cols-2 gap-4">
-<div>
+| Function Name    | Parameters                 | Description                                                                          |
+| ---------------- | -------------------------- | ------------------------------------------------------------------------------------ |
+| `sanitizeQuery`  | `ctx`                      | Sanitizes the request query                                                          |
+| `sanitizeOutput` | `entity`/`entities`, `ctx` | Sanitizes the output data where entity/entities should be an object or array of data |
+| `sanitizeInput`  | `data`, `ctx`              | Sanitizes the input data                                                             |
+| `validateQuery`  | `ctx`                      | Validates the request query (throws an error on invalid params)                      |
+| `validateInput`  | `data`, `ctx`              | (EXPERIMENTAL) Validates the input data (throws an error on invalid data)            |
 
-You can use Vue components directly inside your slides.
+<!-- https://docs.strapi.io/cms/backend-customization/controllers#sanitization-when-utilizing-controller-factories -->
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+---
 
-```html
-<Counter :count="10" />
+## Service
+
+`src/api/article/services/article.ts`
+
+````md magic-move {lines: true}
+```ts {*|7}
+/**
+ * article service.
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreService('api::article.article');
 ```
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
+<!-- https://docs.strapi.io/cms/backend-customization/services -->
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
+```ts {7-18}
+/**
+ * article service.
+ */
 
-</div>
-<div>
+import { factories } from '@strapi/strapi';
 
-```html
-<Tweet id="1390115482657726468" />
+export default factories.createCoreService('api::article.article', ({ strapi }) => ({
+  // Method 1: Creating an entirely custom service
+  async exampleService(...args) {
+    let response = { okay: true }
+
+    if (response.okay === false) {
+      return { response, error: true }
+    }
+
+    return response
+  },
+}));
 ```
 
-<Tweet id="1390115482657726468" scale="0.65" />
+```ts {7-20}
+/**
+ * article service.
+ */
 
-</div>
-</div>
+import { factories } from '@strapi/strapi';
 
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
+export default factories.createCoreService('api::article.article', ({ strapi }) => ({
+  // Method 2: Wrapping a core service (leaves core logic in place)
+  async find(...args) {
+    // Calling the default core controller
+    const { results, pagination } = await super.find(...args);
 
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
+    // some custom logic
+    results.forEach(result => {
+      result.counter = 1;
+    });
 
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
+    return { results, pagination };
+  },
+}));
 ```
 
-```yaml
----
-theme: seriph
----
+```ts {7-12}
+/**
+ * article service.
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreService('api::article.article', ({ strapi }) => ({
+  // Method 3: Replacing a core service
+  async findOne(documentId, params = {}) {
+     return strapi.documents('api::restaurant.restaurant').findOne(documentId, this.getFetchParams(params));
+  },
+}));
 ```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
+````
 
 ---
 
-# Motions
+## Router
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+`src/api/article/routes/article.ts`
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
+````md magic-move {lines: true}
+```ts {*|7}
+/**
+ * article router.
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::article.article');
 ```
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
+<!-- https://docs.strapi.io/cms/backend-customization/routes -->
 
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
+```ts {7-16}
+/**
+ * article router.
+ */
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::article.article', {
+  only: ['find'],
+  config: {
+    find: {
+      auth: false,
+      policies: [],
+      middlewares: [],
+    },
+  },
+});
+```
+
+```ts {7-24}
+/**
+ * article router.
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::article.article', {
+  config: {
+    find: {
+      policies: [
+        // point to a registered policy
+        'policy-name',
+
+        // point to a registered policy with some custom configuration
+        { name: 'policy-name', config: {} },
+
+        // pass a policy implementation directly
+        (policyContext, config, { strapi }) => {
+          return true;
+        },
+      ],
+    },
+  },
+});
+```
+
+```ts {7-24}
+/**
+ * article router.
+ */
+
+import { factories } from '@strapi/strapi';
+
+export default factories.createCoreRouter('api::article.article', {
+  config: {
+    find: {
+      middlewares: [
+        // point to a registered middleware
+        'middleware-name',
+
+        // point to a registered middleware with some custom configuration
+        { name: 'middleware-name', config: {} },
+
+        // pass a middleware implementation directly
+        (ctx, next) => {
+          return next();
+        },
+      ],
+    },
+  },
+});
+```
+````
+
+---
+
+## Policy
+
+`src/policies/is-authenticated.ts` or `src/api/[api-name]/policies/my-policy.ts`
+
+<!-- https://docs.strapi.io/cms/backend-customization/policies -->
+
+````md magic-move {lines: true}
+```ts
+export default (policyContext, config, { strapi }) => {
+  if (policyContext.state.user) {
+    // if a session is open
+    // go to next policy or reach the controller's action
+    return true;
+  }
+
+  // if you return nothing, Strapi considers you didn't want to block the request and will let it pass
+  return false;
+};
+```
+
+```ts
+export default (policyContext, config, { strapi }) => {
+  if (policyContext.state.user.role.code === config.role) {
+    // if user's role is the same as the one described in configuration
+    // go to next policy or reach the controller's action
+    return true;
+  }
+
+  // if you return nothing, Strapi considers you didn't want to block the request and will let it pass
+  return false;
+};
+```
+````
+
+---
+zoom: 0.9
+---
+
+## Schema
+
+`src/api/article/content-types/article/schema.json`
+
+````md magic-move {lines: true}
+```json
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Create your blog content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 80
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "cover": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files", "videos"]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": ["shared.media", "shared.quote", "shared.rich-text", "shared.slider"]
+    }
   }
 }
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
+```
+````
 
 ---
-
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
+title: What's Missing?
 ---
 
-# Diagrams
+# What's Missing? (in the Open Source version)
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+- Field-based permissions
+- SSO for Admin panel
+- Multiple roles per user
+- Public users sync properties from providers (OpenID Connect ID-Token, ...)
 
 ---
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
+layout: end
+hideInToc: true
 ---
 
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
-
----
-layout: center
-class: text-center
----
-
-# Learn More
-
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
+# Thank you for your attention
