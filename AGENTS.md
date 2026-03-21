@@ -50,6 +50,10 @@
   - `.git` file or folder exists and no `.jj` folder is present => use `git` commands
   - If none of the above are found, look for other VCS systems and use their CLI commands
 
+## Package Manager
+
+- **CRITICAL:** Always use `pnpm` (not npm/yarn); `pnpm-lock.yaml` is the lock file
+
 ## Environment & Security Notes
 
 - Secrets belong in `.env`; never commit real credentials; use `*.example` files as baseline
