@@ -1,3 +1,23 @@
+# direnv
+.direnv/
+.env
+.env*
+!.envrc
+!.env.example
+
+###################
+#      Ralph      #
+###################
+# source: https://github.com/snarktank/ralph
+
+# Ralph working files (generated during runs)
+prd.json
+progress.txt
+.last-branch
+.ralph-stop
+# Archive is optional to commit
+# archive/
+
 node_modules
 .DS_Store
 dist
